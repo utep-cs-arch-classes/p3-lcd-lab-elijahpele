@@ -1,0 +1,119 @@
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3>..
+student@systems-vm:~/p3-lcd-lab-elijahpele> make all
+(cd timerLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+msp430-elf-ar crs libTimer.a clocksTimer.o sr.o
+mkdir -p ../h ../lib
+mv libTimer.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+(cd lcdLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+msp430-elf-ar crs libLcd.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+mkdir -p ../h ../lib
+mv libLcd.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+(cd 1_shape_demo; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+(cd 3_moving_shapes; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+(cd 5_project3; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+make[1]: *** No rule to make target 'wdtInterruptHanfler.o', needed by 'button_demo.elf'.  Stop.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+make: *** [Makefile:6: all] Error 2
+student@systems-vm:~/p3-lcd-lab-elijahpele> make all
+(cd timerLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+msp430-elf-ar crs libTimer.a clocksTimer.o sr.o
+mkdir -p ../h ../lib
+mv libTimer.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+(cd lcdLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+msp430-elf-ar crs libLcd.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+mkdir -p ../h ../lib
+mv libLcd.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+(cd 1_shape_demo; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+(cd 3_moving_shapes; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+(cd 5_project3; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h   -c -o wdtInterruptHandler.o wdtInterruptHandler.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h   -c -o button_demo.o button_demo.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h -L../lib -L/opt/ti/msp430_gcc/include/  -o button_demo.elf draw_shapes.o wdtInterruptHandler.o p2_interrupt_handler.o switches.o button_demo.o -lTimer -lLcd 
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+student@systems-vm:~/p3-lcd-lab-elijahpele>cd 5_project3
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3>make load
+msp430loader.sh button_demo.elf
+check 
+Detected msp430 dev kit
+/opt/ti/uniflash/dslite.sh --config /opt/ti/uniflash/MSP430G2553.ccxml -f  button_demo.elf
+Executing the following command:
+> /opt/ti/uniflash_5.1.0/deskdb/content/TICloudAgent/linux/ccs_base/DebugServer/bin/DSLite flash --config /opt/ti/uniflash/MSP430G2553.ccxml -f button_demo.elf
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+info: MSP430:  Flash/FRAM usage is 2918 bytes. RAM usage is 0 bytes.
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3> ls
+button_demo.c    draw_shapes.h   p2_interrupt_handler.c   switches.o        wdtInterruptHandler.c
+button_demo.c~   draw_shapes.h~  p2_interrupt_handler.c~  wdt_c_handler.c   wdtInterruptHandler.c~
+button_demo.elf  draw_shapes.o   p2_interrupt_handler.o   wdt_c_handler.c~  wdtInterruptHandler.o
+button_demo.o    Makefile        #switches.c#             wdt_c_handler.o
+draw_shapes.c    Makefile~       switches.c               wdt_handler.o
+draw_shapes.c~   moving_demo.c~  switches.h               wdt_handler.s
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3> ..
+student@systems-vm:~/p3-lcd-lab-elijahpele> make all
+(cd timerLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+msp430-elf-ar crs libTimer.a clocksTimer.o sr.o
+mkdir -p ../h ../lib
+mv libTimer.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/timerLib'
+(cd lcdLib; make install)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+msp430-elf-ar crs libLcd.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+mkdir -p ../h ../lib
+mv libLcd.a ../lib
+cp *.h ../h
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/lcdLib'
+(cd 1_shape_demo; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/1_shape_demo'
+(cd 3_moving_shapes; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/3_moving_shapes'
+(cd 5_project3; make)
+make[1]: Entering directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h   -c -o draw_shapes.o draw_shapes.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h -L../lib -L/opt/ti/msp430_gcc/include/  -o button_demo.elf draw_shapes.o wdtInterruptHandler.o p2_interrupt_handler.o switches.o button_demo.o -lTimer -lLcd 
+make[1]: Leaving directory '/home/student/p3-lcd-lab-elijahpele/5_project3'
+student@systems-vm:~/p3-lcd-lab-elijahpele> cd 5_project3
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3> make load
+msp430loader.sh button_demo.elf
+check 
+Detected msp430 dev kit
+/opt/ti/uniflash/dslite.sh --config /opt/ti/uniflash/MSP430G2553.ccxml -f  button_demo.elf
+Executing the following command:
+> /opt/ti/uniflash_5.1.0/deskdb/content/TICloudAgent/linux/ccs_base/DebugServer/bin/DSLite flash --config /opt/ti/uniflash/MSP430G2553.ccxml -f button_demo.elf
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+info: MSP430:  Flash/FRAM usage is 2910 bytes. RAM usage is 0 bytes.
+student@systems-vm:~/p3-lcd-lab-elijahpele/5_project3>
