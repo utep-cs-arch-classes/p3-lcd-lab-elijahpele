@@ -22,10 +22,22 @@ typedef struct cir_st {
   int r;
 } circle;
 
+typedef struct thing_st{
+  int x;
+  int y;
+  int old_x;
+  int old_y;
+} thing;
+
 extern u_int background_color;
 u_int circle_color;
 /* initializes shape positions */
 void init_shapes(void);
+
+void moving_thing(void);
+void draw_moving_thing(void);
+
+void init_unique_shape(void);
 
 /*initialized circle position*/
 void init_circle(void);
@@ -46,6 +58,9 @@ void moving_circle(void);
 
 /* draws a rectangle */
 void draw_rectangle(void);
+
+/*draws a thing */
+void draw_thing(void);
 
 /* draws a triangle */
 void draw_triangle(void);

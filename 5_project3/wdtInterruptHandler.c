@@ -5,6 +5,7 @@
 #include "lcddraw.h"
 #include "switches.h"
 #include "buzzer.h"
+#include "stateMachine.h"
 
 // function that handles interrupts
 // from the periodic timer
@@ -24,45 +25,33 @@ __interrupt_vec(WDT_VECTOR) WDT()
   
   if (button_counter == 0) {
     char c = 'E';
-    drawChar5x7(122, 140,c, COLOR_BLACK, COLOR_WHITE); 
+    drawChar5x7(110, 140,c, COLOR_BLACK, COLOR_PINK); 
   }
   
   if (button_counter == 1) {
     char c = 'P';
-    drawChar5x7(122, 140,c, COLOR_BLACK, COLOR_WHITE); 
+      drawChar5x7(110, 140,c, COLOR_BLACK, COLOR_PINK); 
   }
   if(button_counter == 2){button_counter=0;}
-  /*
-  if (second_count == 100) {
-    circle_color = COLOR_BLUE;
-    draw_moving_circle();
-  }
-    if (second_count == 150) {
-    circle_color = COLOR_GREEN;
-    draw_moving_circle();
-    }*/
+ 
   if (second_count >= second_limit) {
 	second_count = 0;
 	draw_moving_circle();
+	draw_moving_thing();
 	slow_counter++;
 	//buzzer_set_period(100);
   }
+  
   switch(slow_counter){
   case(10):
-    buzzer_set_period(2000);
+    runS1();
     break;
   
   case(11):
     slow_counter = 0;
-    break;
-  
+    break; 
+    
   default:
-    buzzer_set_period(0);
+    runS2();
   }
-  
-  //if(slow_counter==10){buzzer_set_period(2000);}
-  //if(slow_counter==11){
-  // buzzer_set_period(0);
-  // slow_counter=0;
-  // } 
 }

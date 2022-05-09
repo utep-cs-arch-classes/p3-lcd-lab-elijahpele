@@ -1,3 +1,4 @@
+
 # makfile configuration
 COMMON_OBJECTS	= switches.o p2_c_handler.o p2_asm_handler.o led.o
 CPU             = msp430g2553	

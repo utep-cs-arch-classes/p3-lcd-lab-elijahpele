@@ -100,5 +100,14 @@ draw_circle(void)
     drawLines(x_coord, y_coord, x_point, y_point, color);
   }
 }
+void border(void){
+  int y1=0;
+  int y2=159;
+  int x1= 0;
+  int x2 = 127;
+
+  drawRectOutline(x1,y1,screenWidth-1,screenHeight-1,COLOR_RED);
+  //code here
+}
   
 

@@ -191,7 +191,7 @@ draw_circle(int x, int y, int r, u_int color)
 void
 moving_circle(void)
 {
-  static int x_vel = 5;
+  static int x_vel = 1;
   static int y_vel = 10;
   
   u_int color = COLOR_SIENNA;

@@ -2,9 +2,9 @@ all:
 	(cd timerLib; make install)
 	(cd lcdLib; make install)
 	(cd 1_shape_demo; make)
-	(cd 2_button_demo; make)
 	(cd 3_moving_shapes; make)
 	(cd 4_wake_demo; make)
+	(cd 5_project3; make)
 
 doc:
 	rm -rf doxygen_docs
@@ -16,5 +16,6 @@ clean:
 	(cd 2_button_demo; make clean)
 	(cd 3_moving_shapes; make clean)
 	(cd 4_wake_demo; make clean)
+	(cd 5_project3; make clean)
 	rm -rf lib h
 	rm -rf doxygen_docs/*

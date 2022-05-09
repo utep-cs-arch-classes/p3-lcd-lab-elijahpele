@@ -17,5 +17,6 @@ void main()
   draw_rectangle();
   draw_triangle();
   draw_circle();
+  border();
   or_sr(0x10);	/**< CPU OFF */
 }

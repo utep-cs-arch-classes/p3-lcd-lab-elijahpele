@@ -15,10 +15,17 @@ rectangle rect1;
 /* int old_cir_y, old_cir_x; */
 /* int r; */
 circle cir1;
-
+thing thing1;
 short redrawScreen = 1;
 extern u_int circle_color;
-u_int background_color = COLOR_WHITE;
+u_int background_color = COLOR_PINK;
+
+void init_unique_shape(void){
+  thing1.x = screenWidth / 2;
+  thing1.y = 30;
+  thing1.old_x = screenWidth/2;
+  thing1.old_y = 30;
+}
 void
 init_shapes(void)
 {
@@ -46,7 +53,32 @@ void init_circle(void){
   cir1.old_cir_x = screenWidth / 2;
   cir1.r = 20;
 }
-
+void draw_moving_thing(void){
+  fillRectangle(thing1.old_x, thing1.old_y, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x, thing1.old_y-7, 1, 7, COLOR_PINK);
+  fillRectangle(thing1.old_x-1, thing1.old_y-1, 1, 2, COLOR_PINK);
+  fillRectangle(thing1.old_x-1, thing1.old_y-2, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x-1, thing1.old_y-7, 1, 5, COLOR_PINK);
+  fillRectangle(thing1.old_x-2, thing1.old_y-5, 1, 5, COLOR_PINK);
+  fillRectangle(thing1.old_x-2, thing1.old_y-5, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x-2, thing1.old_y-6, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x-2, thing1.old_y-5, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x-3, thing1.old_y-5, 1,6, COLOR_PINK);
+  fillRectangle(thing1.old_x-4, thing1.old_y-4, 1, 4, COLOR_PINK);
+  //second half of Dog
+  fillRectangle(thing1.old_x+1, thing1.old_y, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x+1, thing1.old_y-7, 1, 7, COLOR_PINK);
+  fillRectangle(thing1.old_x+2, thing1.old_y-1, 1, 2, COLOR_PINK);
+  fillRectangle(thing1.old_x+2, thing1.old_y-2, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x+2, thing1.old_y-7, 1, 5, COLOR_PINK);
+  fillRectangle(thing1.old_x+3, thing1.old_y-5, 1, 5, COLOR_PINK);
+  fillRectangle(thing1.old_x+3, thing1.old_y-5, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x+3, thing1.old_y-6, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x+3, thing1.old_y-5, 1, 1, COLOR_PINK);
+  fillRectangle(thing1.old_x+4, thing1.old_y-5, 1,6, COLOR_PINK);
+  fillRectangle(thing1.old_x+5, thing1.old_y-4, 1, 4, COLOR_PINK);
+  moving_thing();
+}
 
 void
 draw_moving_circle(void)
@@ -54,6 +86,8 @@ draw_moving_circle(void)
   //f(switches & SW4){
   //eturn;
   //
+  //could have implemented using a state machine.
+  //also could have implemented buzzer as a state machine..
   draw_circle(cir1.old_cir_x, cir1.old_cir_y, cir1.r, background_color);
   if(switch1_down){
     circle_color = COLOR_RED;;
@@ -88,6 +122,34 @@ draw_moving_shapes(void)
 
   // draw the triangle
   draw_triangle();
+}
+
+void
+draw_thing(void)
+{
+  fillRectangle(thing1.x, thing1.y, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x, thing1.y-7, 1, 7, COLOR_ORANGE);
+  fillRectangle(thing1.x-1, thing1.y-1, 1, 2, COLOR_ORANGE);
+  fillRectangle(thing1.x-1, thing1.y-2, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x-1, thing1.y-7, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x-2, thing1.y-6, 1, 1, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x-3, thing1.y-5, 1,6, COLOR_RED);
+  fillRectangle(thing1.x-4, thing1.y-4, 1, 4, COLOR_RED);
+  //second half of Dog
+  fillRectangle(thing1.x+1, thing1.y, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x+1, thing1.y-7, 1, 7, COLOR_ORANGE);
+  fillRectangle(thing1.x+2, thing1.y-1, 1, 2, COLOR_ORANGE);
+  fillRectangle(thing1.x+2, thing1.y-2, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x+2, thing1.y-7, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x+3, thing1.y-6, 1, 1, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x+4, thing1.y-5, 1,6, COLOR_RED);
+  fillRectangle(thing1.x+5, thing1.y-4, 1, 4, COLOR_RED);
 }
 
 void
@@ -144,8 +206,8 @@ moving_rectangle(rectangle *to_draw)
 void
 draw_triangle(void)
 {
-  u_char height = 10;
-  u_char row = 20, col = 10;
+  u_char height = 20;
+  u_char row = 120, col = screenWidth/2;
 
   u_char step = 0;
 
@@ -249,3 +311,51 @@ moving_circle()
     y_vel = y_vel * -1;
   }
 }
+void
+moving_thing()
+{
+  static int x_vel = 5;
+  static int y_vel = 0;
+  
+
+  // draw at the new position
+  fillRectangle(thing1.x, thing1.y, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x, thing1.y-7, 1, 7, COLOR_ORANGE);
+  fillRectangle(thing1.x-1, thing1.y-1, 1, 2, COLOR_ORANGE);
+  fillRectangle(thing1.x-1, thing1.y-2, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x-1, thing1.y-7, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x-2, thing1.y-6, 1, 1, COLOR_ORANGE);
+  fillRectangle(thing1.x-2, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x-3, thing1.y-5, 1,6, COLOR_RED);
+  fillRectangle(thing1.x-4, thing1.y-4, 1, 4, COLOR_RED);
+  //second half of Dog
+  fillRectangle(thing1.x+1, thing1.y, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x+1, thing1.y-7, 1, 7, COLOR_ORANGE);
+  fillRectangle(thing1.x+2, thing1.y-1, 1, 2, COLOR_ORANGE);
+  fillRectangle(thing1.x+2, thing1.y-2, 1, 1, COLOR_BLACK);
+  fillRectangle(thing1.x+2, thing1.y-7, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 5, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x+3, thing1.y-6, 1, 1, COLOR_ORANGE);
+  fillRectangle(thing1.x+3, thing1.y-5, 1, 1, COLOR_RED);
+  fillRectangle(thing1.x+4, thing1.y-5, 1,6, COLOR_RED);
+  fillRectangle(thing1.x+5, thing1.y-4, 1, 4, COLOR_RED);
+
+  
+  // save current position
+  thing1.old_x = thing1.x;
+  thing1.old_y = thing1.y;
+
+  // update position
+  thing1.x -= x_vel;
+  thing1.y += y_vel;
+  
+  // check boundaries, see if rectangle has hit the edges
+  if ( (thing1.x + 5) >= screenWidth || (thing1.x - 4) <= 0) {
+    // top or bottom hit, reverse x velocity
+    x_vel = x_vel * -1;
+  }
+}
+

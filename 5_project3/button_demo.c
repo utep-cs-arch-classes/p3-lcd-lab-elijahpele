@@ -7,31 +7,8 @@
 #include "buzzer.h"
 
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
-u_int backgroundColor = COLOR_WHITE;
+u_int backgroundColor = COLOR_PINK;
  
-/*void
-update_text(void)
-{
-  const u_char text_row = 20;
-  const u_char text_col = 40;
-  const u_char char_width = 12;
-  static u_char blue = 31, green = 16, red = 31;
-  u_int on_color  =                (green << 5) | red;
-  u_int off_color = (blue << 11)                | red;
-  
-  if (switch1_state == down) {
-    drawChar5x7(text_col, text_row, '1',on_color, backgroundColor);
-  } else {
-    drawChar5x7(text_col, text_row, '-',off_color, backgroundColor);
-  }
-  if (switch2_state == down) {
-    drawChar5x7(text_col + char_width, text_row, '2',on_color, backgroundColor);
-  } else {
-    drawChar5x7(text_col + char_width, text_row, '-',off_color, backgroundColor);
-  }
-
-}*/
-
 void main(void)
 {
   configureClocks();
@@ -40,8 +17,9 @@ void main(void)
   buzzer_init();
   clearScreen(backgroundColor);
   init_circle();
+  init_unique_shape();
   draw_triangle();
-  drawRectOutline(0,0,127,159,COLOR_RED);
+  drawRectOutline(0,0,127,159,COLOR_PURPLE);
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
