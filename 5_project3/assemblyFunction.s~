@@ -1,0 +1,12 @@
+	.arch msp430g2553
+	.p2align 1,0
+	.text
+
+
+	.global flipGreen
+	.extern green_on
+
+flipGreen:
+	xor.b #1, &green_on
+off:
+	pop r0
